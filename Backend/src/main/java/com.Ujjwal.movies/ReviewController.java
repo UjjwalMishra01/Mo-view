@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/reviews")
@@ -14,13 +15,16 @@ public class ReviewController {
     @Autowired
     private ReviewService service;
 
-    @PostMapping
-    public ResponseEntity<Review> createReview(@RequestBody Map<String, String> payload) {
-        String reviewBody = payload.get("reviewBody");
-        String imdbId = payload.get("imdbId");
+    @PutMapping("/{reviewId}")
+    public ResponseEntity<Review> updateReview(@PathVariable String reviewId, @RequestBody Map<String, String> payload) {
+        String newReviewBody = payload.get("reviewBody");
 
-        Review review = service.createReview(reviewBody, imdbId);
+        Optional<Review> updatedReview = service.updateReview(reviewId, newReviewBody);
 
-        return new ResponseEntity<>(review, HttpStatus.OK);
+        if (updatedReview.isPresent()) {
+            return new ResponseEntity<>(updatedReview.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Review not found
+        }
     }
 }
