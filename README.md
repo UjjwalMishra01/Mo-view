@@ -12,7 +12,7 @@ MO-view is a modern web application designed to provide users with a comprehensi
 - **Responsive Design**: Fully responsive and optimized for all devices (desktop, mobile, tablet).
 
 ## Prerequisites
-- Node.js and npm must be installed on your machine.
+- SpringBoot and git must be installed on your machine.
 - A GitHub account to access the repository.
 
 ## Getting Started
@@ -29,7 +29,7 @@ MO-view is a modern web application designed to provide users with a comprehensi
 
 3. **Start the Development Server:**
    ```bash
-   npm start
+   run the MoviewApplication.java file
    ```
 
    This will start the development server, and your app will be available at `http://localhost:3000`.
